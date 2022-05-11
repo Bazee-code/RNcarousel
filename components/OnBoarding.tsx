@@ -4,6 +4,7 @@ import slides from '../assets/common/slides'
 import OnBoardingItem from './OnBoardingItem'
 import Paginator from './Paginator'
 import OnBoardingButton from './OnBoardingButton'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type slidesProps = {
     viewableItems : typeof slides
@@ -22,12 +23,17 @@ const OnBoarding = () => {
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold : 50}).current
 
-    const scrollTo = () => {
+    const scrollTo = async () => {
         if(currentIndex < slides.length - 1){
             slidesRef.current.scrollToIndex({index : currentIndex  + 1})
         }
         else{
-         console.log('last item')   
+         try {
+             await AsyncStorage.setItem('@viewedOnboarding','true')
+         }
+         catch(e){
+             console.log('error',e)
+         } 
         }
     }
 
