@@ -30,17 +30,23 @@ const OnBoardingButton = ({percentage, scrollTo} : onBoardingButtonProps) => {
         animation(percentage)
     },[percentage])
 
-    useEffect(()=>{
+    useEffect(() => {
         progressAnimation.addListener((value)=>{
             const strokeDashoffset = circumference - (circumference * value.value) / 100
 
             if(progressRef?.current){
                 progressRef.current.setNativeProps({
                     strokeDashoffset
-                })
+                });
             }
-        })
-    },[percentage])
+    },
+        [percentage]
+    );
+
+    return () => {
+        progressAnimation.removeAllListeners()
+    };
+    },[])
 
     return (
         <View style={styles.container}>
