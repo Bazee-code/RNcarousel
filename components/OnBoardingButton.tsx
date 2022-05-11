@@ -1,5 +1,6 @@
-import { View, StyleSheet, Text, Animated} from 'react-native'
+import { View, StyleSheet, Text, Animated, TouchableOpacity} from 'react-native'
 import Svg, { G, Circle } from 'react-native-svg'
+import { AntDesign } from '@expo/vector-icons'
 
 const OnBoardingButton = () => {
     const size = 128
@@ -17,6 +18,10 @@ const OnBoardingButton = () => {
                         strokeDasharray={circumference} strokeDashoffset={circumference - (circumference*25) / 100} />
             </G>
             </Svg>
+
+            <TouchableOpacity>
+                <AntDesign name="caretright" size={32} color="#fff" />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -28,5 +33,8 @@ const styles = StyleSheet.create({
         flex : 1,
         justifyContent : 'center',
         alignItems : 'center'
+    },
+    button : {
+        
     }
 })
