@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     description : {
         textAlign : 'center',
-        paddingHorizontal : 10,
+        paddingHorizontal : 64,
         paddingTop : 10,
         color : 'grey'
     }

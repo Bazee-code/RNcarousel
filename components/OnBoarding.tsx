@@ -9,6 +9,7 @@ const OnBoarding = () => {
             <FlatList
                 data = {slides}
                 renderItem = {({item}) => <OnBoardingItem item = {item} />}
+                horizontal
                 />
         </View>
     )
