@@ -1,11 +1,18 @@
-import { View, StyleSheet, FlatList, Animated} from 'react-native'
+import { View, StyleSheet, FlatList, Animated,} from 'react-native'
 import { useRef, useState } from 'react'
 import slides from '../assets/common/slides'
 import OnBoardingItem from './OnBoardingItem'
+import Paginator from './Paginator'
+import OnBoardingButton from './OnBoardingButton'
+
+type slidesProps = {
+    viewableItems : typeof slides
+}
 
 const OnBoarding = () => {  
     const [ currentIndex, setCurrentIndex] = useState(0)
     const scrollX = useRef(new Animated.Value(0)).current
+    // console.log('scroll',scrollX)
     const slidesRef = useRef(null)
 
     const viewableItemsChanged = useRef(({viewableItems})=> {
@@ -22,8 +29,8 @@ const OnBoarding = () => {
                     data = {slides}
                     renderItem = {({item}) => <OnBoardingItem item = {item} />}
                     horizontal
-                    showsHorizontalScrollIndicator
                     pagingEnabled
+                    showsHorizontalScrollIndicator={false}
                     bounces={false}
                     keyExtractor={(item) => item.id}
                     onScroll={Animated.event([{
@@ -37,6 +44,9 @@ const OnBoarding = () => {
                     ref={slidesRef}
                     />
             </View>
+
+            <Paginator data={slides} scrollX={scrollX} />
+            <OnBoardingButton data={slides} />
         </View>
     )
 }
