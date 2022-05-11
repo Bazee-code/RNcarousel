@@ -13,12 +13,12 @@ type slidesProps = {
 const OnBoarding = () => {  
     const [ currentIndex, setCurrentIndex] = useState(0)
     const scrollX = useRef(new Animated.Value(0)).current
-    // console.log('scroll',scrollX)Fins
+
     const slidesRef = useRef(null)
 
     const viewableItemsChanged = useRef(({viewableItems})=> {
         setCurrentIndex(viewableItems[0].index)
-        // console.log('items',viewableItems)
+        
     }).current
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold : 50}).current
