@@ -4,7 +4,7 @@
     "slug": "RNcarousel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/compose-music.png",
+    "icon": "./assets/images/enter.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/fashion-blogging.png",
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/social-thinking.png",
+        "foregroundImage": "./assets/images/enter.png",
         "backgroundColor": "#FFFFFF"
       }
     },
