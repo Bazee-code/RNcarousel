@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native'
+import { View, Text, StyleSheet, Image, useWindowDimensions, ImageSourcePropType} from 'react-native'
 
 type slidesProps = {
     item : {
         id: string,
         title : string,
         description : string,
-        image : string
+        image : ImageSourcePropType
     }
 }
 
