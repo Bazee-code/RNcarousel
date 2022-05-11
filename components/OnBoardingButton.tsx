@@ -4,10 +4,11 @@ import Svg, { G, Circle } from 'react-native-svg'
 import { AntDesign } from '@expo/vector-icons'
 
 type onBoardingButtonProps = {
-    percentage : Animated.Value
+    percentage : Animated.Value | number,
+    scrollTo : () => void
 }
 
-const OnBoardingButton = ({percentage} : onBoardingButtonProps) => {
+const OnBoardingButton = ({percentage, scrollTo} : onBoardingButtonProps) => {
     const size = 128
     const strokeWidth = 2
     const center = size / 2
@@ -58,7 +59,7 @@ const OnBoardingButton = ({percentage} : onBoardingButtonProps) => {
                 </G>
             </Svg>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={scrollTo}>
                 <AntDesign name="caretright" size={32} color="#fff" />
             </TouchableOpacity>
         </View>
