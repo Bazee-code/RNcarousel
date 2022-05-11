@@ -10,6 +10,8 @@ const OnBoarding = () => {
                 data = {slides}
                 renderItem = {({item}) => <OnBoardingItem item = {item} />}
                 horizontal
+                showsHorizontalScrollIndicator
+                pagingEnabled
                 />
         </View>
     )
