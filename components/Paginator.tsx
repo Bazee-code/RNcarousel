@@ -2,13 +2,11 @@ import { View , StyleSheet, Animated, useWindowDimensions} from 'react-native'
 import slides from '../assets/common/slides'
 
 type paginatorProps = {
-    data : typeof slides
-}
-type scrollProps = {
+    data : typeof slides,
     scrollX : Animated.Value
 }
 
-const Paginator = ({data} : paginatorProps, {scrollX} : scrollProps) => {
+const Paginator = ({data, scrollX} : paginatorProps) => {
     const { width } = useWindowDimensions()
 
     return (
@@ -25,7 +23,7 @@ const Paginator = ({data} : paginatorProps, {scrollX} : scrollProps) => {
                     })
 
                     return(
-                        <View key={index.toString()} style={styles.dot} />
+                        <Animated.View key={index.toString()} style={[styles.dot,{width : dotWidth}]} />
                     )
                 })
             }
@@ -42,7 +40,6 @@ const styles = StyleSheet.create({
     },
     dot : {
         height : 10,
-        width : 10,
         borderRadius : 5,
         backgroundColor : '#493d8a',
         marginHorizontal : 8
