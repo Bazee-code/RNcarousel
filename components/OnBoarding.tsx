@@ -1,5 +1,5 @@
 import { View, StyleSheet, FlatList, Animated,} from 'react-native'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import slides from '../assets/common/slides'
 import OnBoardingItem from './OnBoardingItem'
 import Paginator from './Paginator'
@@ -12,7 +12,7 @@ type slidesProps = {
 const OnBoarding = () => {  
     const [ currentIndex, setCurrentIndex] = useState(0)
     const scrollX = useRef(new Animated.Value(0)).current
-    // console.log('scroll',scrollX)
+    // console.log('scroll',scrollX)Fins
     const slidesRef = useRef(null)
 
     const viewableItemsChanged = useRef(({viewableItems})=> {
@@ -21,6 +21,16 @@ const OnBoarding = () => {
     }).current
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold : 50}).current
+
+    const scrollTo = () => {
+        if(currentIndex < slides.length - 1){
+            slidesRef.current.scrollToIndex({index : currentIndex  + 1})
+        }
+        else{
+         console.log('last item')   
+        }
+    }
+
 
     return(
         <View style={styles.container}>
@@ -46,7 +56,7 @@ const OnBoarding = () => {
             </View>
 
             <Paginator data={slides} scrollX={scrollX} />
-            <OnBoardingButton data={slides} />
+            <OnBoardingButton percentage={(currentIndex + 1) * (100/slides.length)} scrollTo={scrollTo}/>
         </View>
     )
 }
