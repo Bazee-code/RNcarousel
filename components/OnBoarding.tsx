@@ -12,6 +12,8 @@ const OnBoarding = () => {
                 horizontal
                 showsHorizontalScrollIndicator
                 pagingEnabled
+                bounces={false}
+                keyExtractor={(item) => item.id}
                 />
         </View>
     )
