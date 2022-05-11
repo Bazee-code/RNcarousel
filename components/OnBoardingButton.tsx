@@ -3,7 +3,11 @@ import { useEffect, useRef } from 'react'
 import Svg, { G, Circle } from 'react-native-svg'
 import { AntDesign } from '@expo/vector-icons'
 
-const OnBoardingButton = () => {
+type onBoardingButtonProps = {
+    percentage : Animated.Value
+}
+
+const OnBoardingButton = ({percentage} : onBoardingButtonProps) => {
     const size = 128
     const strokeWidth = 2
     const center = size / 2
@@ -13,15 +17,44 @@ const OnBoardingButton = () => {
     const progressAnimation = useRef(new Animated.Value(0)).current;
     const progressRef = useRef(null)
 
-    const animaton
+    const animation = (toValue : Animated.Value) => {
+        return Animated.timing(progressAnimation, {
+            toValue,
+            duration : 250,
+            useNativeDriver : true
+        }).start()
+    }
+
+    useEffect(()=>{
+        animation(percentage)
+    },[percentage])
+
+    useEffect(()=>{
+        progressAnimation.addListener((value)=>{
+            const strokeDashoffset = circumference - (circumference * value.value) / 100
+
+            if(progressRef?.current){
+                progressRef.current.setNativeProps({
+                    strokeDashoffset
+                })
+            }
+        })
+    },[percentage])
 
     return (
         <View style={styles.container}>
             <Svg height={size} width={size}>
                 <G rotation={-90} origin={center}>
                     <Circle cx={center} cy={center} r={radius} stroke="#E6E7EB" strokeWidth={strokeWidth} />
-                    <Circle cx={center} cy={center} r={radius} stroke="#00008B" strokeWidth={strokeWidth}
-                        strokeDasharray={circumference} strokeDashoffset={circumference - (circumference*25) / 100} />
+                    <Circle 
+                        ref={progressRef}
+                        cx={center} 
+                        cy={center} 
+                        r={radius} 
+                        stroke="#00008B" 
+                        strokeWidth={strokeWidth}
+                        strokeDasharray={circumference}
+                        />
                 </G>
             </Svg>
 
