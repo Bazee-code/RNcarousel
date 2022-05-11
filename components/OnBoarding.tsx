@@ -1,10 +1,15 @@
-import { View, Text, StyleSheet, FlatList} from 'react-native'
+import { View, StyleSheet, FlatList, ListRenderItem} from 'react-native'
+import slides from '../assets/common/slides'
+import OnBoardingItem from './OnBoardingItem'
 
-const OnBoarding = () => {
+const OnBoarding = () => {  
 
     return(
         <View style={styles.container}>
-            <Text>On boarding component</Text>
+            <FlatList
+                data = {slides}
+                renderItem = {({item}) => <OnBoardingItem item = {item} />}
+                />
         </View>
     )
 }
